@@ -1,0 +1,47 @@
+.constel {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  pointer-events: none;
+}
+
+.constel__box {
+  position: relative;
+  width: min(300px, 78vw);
+  aspect-ratio: 200 / 110;
+}
+
+.constel__dot {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  margin: -4.5px 0 0 -4.5px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff6e2 0%, var(--gold) 58%, rgba(224, 188, 133, 0) 100%);
+  box-shadow: 0 0 12px rgba(255, 214, 156, 0.75);
+  will-change: transform, opacity;
+}
+
+/* Cahaya yang benar-benar dikumpulkan sendiri, sedikit lebih besar. */
+.constel__dot.is-mine {
+  width: 11px;
+  height: 11px;
+  margin: -5.5px 0 0 -5.5px;
+  box-shadow: 0 0 18px rgba(255, 220, 165, 0.9);
+}
+
+.constel__halo {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 150%;
+  height: 190%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse,
+    rgba(255, 212, 152, 0.24) 0%,
+    rgba(255, 200, 140, 0.09) 42%,
+    rgba(255, 200, 140, 0) 72%
+  );
+}

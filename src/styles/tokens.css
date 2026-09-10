@@ -1,0 +1,166 @@
+/* ==================================================================
+   PAPER GARDEN — design tokens
+
+   Art direction: a hand-cut paper diorama, lit from within. Every
+   surface is paper, every layer casts a soft shadow onto the one
+   behind it, and the whole world travels from cool dusk to warm gold
+   to night as the story progresses.
+
+   Nothing downstream hard-codes a colour.
+   ================================================================== */
+
+:root {
+  /* --- Paper ---------------------------------------------------- */
+  --paper-0: #fff8f0; /* the lightest cut — catches the light */
+  --paper-1: #f9f0e6;
+  --paper-2: #f0e3d4;
+  --paper-3: #e3d2be;
+  --paper-4: #d2bda6;
+
+  /* --- Foliage, cut from progressively darker stock ------------- */
+  --leaf-1: #b3bfa6;
+  --leaf-2: #97a689;
+  --leaf-3: #7b8b6f;
+  --leaf-4: #5f6f57;
+  --leaf-5: #46543f;
+  --leaf-6: #313d2d; /* the near foreground, almost a silhouette */
+
+  /* --- Accents -------------------------------------------------- */
+  --rose: #d9a6ae;
+  --rose-soft: #e9c8cc;
+  --rose-deep: #bd858f;
+  --gold: #e0bc85;
+  --gold-deep: #c1955c;
+
+  /* --- Ink ------------------------------------------------------ */
+  --ink: #2f2723;
+  --ink-soft: #4b3f39;
+  --ink-muted: #8b7a70;
+
+  /* --- Night ---------------------------------------------------- */
+  --night-1: #232c27;
+  --night-2: #161d1a;
+  --night-3: #0d1211;
+
+  /* --- Semantic ------------------------------------------------- */
+  --surface: var(--paper-0);
+  --text-strong: var(--ink);
+  --text: var(--ink-soft);
+  --text-muted: var(--ink-muted);
+  --text-on-night: #f2e7db;
+  --text-on-night-muted: rgba(242, 231, 219, 0.58);
+
+  /* --- Edges ---------------------------------------------------- */
+  --edge-hair: rgba(47, 39, 35, 0.08);
+  --edge-soft: rgba(47, 39, 35, 0.13);
+  --edge-strong: rgba(47, 39, 35, 0.2);
+  --edge-night: rgba(242, 231, 219, 0.12);
+
+  /* --- Tactile Soft 3D Tokens ------------------------------------
+     Subtle bevel, soft inner highlight, tone-matched edge, slight extrusion,
+     and diffuse contact shadow. Natural inflated rounded surfaces. */
+  --tactile-edge-light: rgba(218, 202, 185, 0.5);
+  --tactile-edge-dark: rgba(242, 231, 219, 0.1);
+  --tactile-edge-gold: rgba(224, 188, 133, 0.25);
+
+  --tactile-bevel-light: inset 0 1.5px 0.5px rgba(255, 255, 255, 0.9), inset 0 -1.5px 0 rgba(195, 175, 155, 0.28);
+  --tactile-bevel-dark: inset 0 1.2px 0 rgba(255, 255, 255, 0.15), inset 0 -1px 0 rgba(0, 0, 0, 0.38);
+
+  --tactile-panel-light: inset 0 1.5px 0.5px rgba(255, 255, 255, 0.9), inset 0 -1.5px 0 rgba(195, 175, 155, 0.25), 0 3px 0 #dfd1bd, 0 8px 20px -2px rgba(45, 33, 24, 0.12), 0 18px 36px -6px rgba(45, 33, 24, 0.08);
+  --tactile-panel-dark: inset 0 1.2px 0 rgba(255, 255, 255, 0.14), inset 0 -1.2px 0 rgba(0, 0, 0, 0.4), 0 3px 0 #121815, 0 8px 20px -3px rgba(0, 0, 0, 0.4);
+
+  --tactile-btn-light: inset 0 1.5px 0.5px rgba(255, 255, 255, 0.95), inset 0 -1px 0 rgba(200, 180, 160, 0.35), 0 3.5px 0 #d6c3ac, 0 6px 14px rgba(42, 30, 22, 0.18);
+  --tactile-btn-light-hover: inset 0 2px 0.5px rgba(255, 255, 255, 1), inset 0 -1px 0 rgba(200, 180, 160, 0.4), 0 4px 0 #d6c3ac, 0 8px 18px rgba(42, 30, 22, 0.22);
+  --tactile-btn-light-pressed: inset 0 1.5px 2px rgba(90, 70, 50, 0.2), 0 1px 0 #d6c3ac, 0 2px 5px rgba(42, 30, 22, 0.12);
+
+  --tactile-btn-dark: inset 0 1.2px 0 rgba(255, 255, 255, 0.18), inset 0 -1px 0 rgba(0, 0, 0, 0.4), 0 3px 0 #131a17, 0 6px 14px rgba(0, 0, 0, 0.35);
+  --tactile-btn-dark-hover: inset 0 1.5px 0 rgba(255, 255, 255, 0.24), inset 0 -1px 0 rgba(0, 0, 0, 0.45), 0 3.5px 0 #131a17, 0 8px 18px rgba(0, 0, 0, 0.4);
+  --tactile-btn-dark-pressed: inset 0 1.5px 2px rgba(0, 0, 0, 0.45), 0 1px 0 #131a17, 0 2px 5px rgba(0, 0, 0, 0.2);
+
+  --tactile-chip-dark: inset 0 1px 0 rgba(255, 255, 255, 0.13), inset 0 -1px 0 rgba(0, 0, 0, 0.28), 0 2px 0 #121815, 0 5px 12px rgba(0, 0, 0, 0.3);
+
+  /* --- Paper shadows -------------------------------------------
+     A cut-paper layer sits *above* the one behind it, so its shadow
+     is short, soft and slightly warm — never a generic grey blur. */
+  --lift-1: 0 1px 2px rgba(58, 42, 34, 0.06), 0 2px 6px rgba(58, 42, 34, 0.05);
+  --lift-2: inset 0 1px 0 rgba(255, 255, 255, 0.6), 0 2px 0 rgba(58, 42, 34, 0.1), 0 4px 12px rgba(58, 42, 34, 0.07);
+  --lift-3: inset 0 1.2px 0 rgba(255, 255, 255, 0.7), 0 3px 0 rgba(58, 42, 34, 0.12), 0 8px 22px rgba(58, 42, 34, 0.09);
+  --lift-4: inset 0 1.5px 0 rgba(255, 255, 255, 0.8), 0 4px 0 rgba(58, 42, 34, 0.14), 0 16px 36px rgba(58, 42, 34, 0.12);
+  --lift-print: inset 0 1.5px 0.5px rgba(255, 255, 255, 0.85), inset 0 -1px 0 rgba(195, 175, 155, 0.25), 0 3px 0 #ded0bd, 0 10px 24px -2px rgba(58, 42, 34, 0.18);
+
+  /* --- Radii ---------------------------------------------------- */
+  --r-xs: 6px;
+  --r-sm: 10px;
+  --r-md: 16px;
+  --r-lg: 22px;
+  --r-print: 3px; /* photographs have almost square corners */
+  --r-pill: 999px;
+
+  /* --- Type ----------------------------------------------------- */
+  --font-display: 'Cormorant Garamond', 'Iowan Old Style', Georgia, serif;
+  --font-ui: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Display sizes are deliberately large and airy — the restraint in
+     this design lives in how little text there is, not how small. */
+  --fs-numeral: clamp(3.5rem, 17vw, 4.75rem); /* chapter numerals */
+  --fs-hero: clamp(3rem, 14.6vw, 4rem); /* the name */
+  --fs-chapter: clamp(1.9rem, 8.8vw, 2.375rem);
+  --fs-title: clamp(1.5rem, 6.8vw, 1.875rem);
+  --fs-lead: clamp(1.0625rem, 4.7vw, 1.25rem);
+  --fs-body: clamp(0.9375rem, 3.9vw, 1rem);
+  --fs-caption: clamp(0.8125rem, 3.4vw, 0.875rem);
+  --fs-micro: 0.6875rem;
+  --fs-button: clamp(0.875rem, 3.7vw, 0.9375rem);
+
+  --lh-display: 1.02;
+  --lh-title: 1.18;
+  --lh-body: 1.68;
+
+  --tr-micro: 0.24em; /* uppercase micro labels */
+  --tr-button: 0.015em;
+  --tr-display: -0.012em; /* large serif wants slightly negative */
+
+  /* --- Space ---------------------------------------------------- */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 44px;
+  --s-8: 64px;
+
+  --gutter: clamp(22px, 6.4vw, 30px);
+
+  /* --- Stage ---------------------------------------------------- */
+  --stage-w: 430px;
+  --safe-t: env(safe-area-inset-top, 0px);
+  --safe-b: env(safe-area-inset-bottom, 0px);
+  --safe-l: env(safe-area-inset-left, 0px);
+  --safe-r: env(safe-area-inset-right, 0px);
+
+  /* --- Layers --------------------------------------------------- */
+  --z-sky: 1;
+  --z-far: 2;
+  --z-mid: 3;
+  --z-actors: 4;
+  --z-near: 5;
+  --z-air: 6;
+  --z-ui: 10;
+  --z-hud: 20;
+  --z-sheet: 30;
+  --z-curtain: 40;
+  --z-top: 50;
+
+  /* --- Time ----------------------------------------------------- */
+  --t-tap: 140ms;
+  --t-btn: 190ms;
+  --t-ui: 300ms;
+  --t-sheet: 440ms;
+  --t-scene: 900ms;
+  --t-print: 1250ms;
+
+  --e-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --e-inout: cubic-bezier(0.65, 0, 0.35, 1);
+  --e-cine: cubic-bezier(0.16, 0.84, 0.24, 1);
+}

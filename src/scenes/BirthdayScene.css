@@ -1,0 +1,96 @@
+.langit {
+  background: var(--night-3);
+}
+
+/* Mengangkat teks dari taman tanpa menutupinya. */
+.langit__lift {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-air);
+  pointer-events: none;
+  background:
+    radial-gradient(96% 48% at 50% 30%, rgba(10, 14, 16, 0.5) 0%, rgba(10, 14, 16, 0) 80%),
+    linear-gradient(
+      180deg,
+      rgba(10, 14, 16, 0.2) 0%,
+      rgba(10, 14, 16, 0.1) 26%,
+      rgba(10, 14, 16, 0.03) 48%,
+      rgba(10, 14, 16, 0) 66%
+    );
+}
+
+/* Siluet, bukan ilustrasi. brightness(0) meratakan aset impor jadi
+   bentuk murni; drop-shadow-nya mengembalikan tepi cahaya lentera. */
+.langit__couple {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-inline: auto;
+  bottom: calc(var(--safe-b) + 10%);
+  width: min(300px, 76%);
+  z-index: var(--z-air);
+  pointer-events: none;
+  filter: brightness(0) saturate(0) drop-shadow(0 0 16px rgba(255, 214, 156, 0.34));
+  opacity: 0.7;
+}
+
+.langit__body {
+  position: relative;
+  z-index: var(--z-ui);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  padding-top: clamp(48px, 10vh, 92px);
+  padding-bottom: calc(var(--safe-b) + var(--s-5));
+  text-align: center;
+}
+
+.langit__intro {
+  position: absolute;
+  top: clamp(40px, 9vh, 90px);
+  left: 0;
+  right: 0;
+  color: var(--text-on-night-muted);
+  max-width: 28ch;
+  margin-inline: auto;
+}
+
+.langit__ucapan {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-2);
+  /* Negatif: kotak rasi bintangnya punya ruang kosong sendiri di bawah
+     titik-titik alas angkanya. Tanpa ini kelihatan menganga. */
+  margin-top: clamp(-14px, -1vh, -4px);
+}
+
+.langit__selamat {
+  color: var(--text-on-night-muted);
+  letter-spacing: 0.02em;
+}
+
+.langit__nama {
+  color: #fbf1e4;
+  text-shadow: 0 0 48px rgba(255, 206, 152, 0.45);
+}
+
+.langit__sesudah {
+  margin-top: var(--s-1);
+  max-width: 30ch;
+  text-wrap: pretty;
+  color: rgba(242, 231, 219, 0.5);
+}
+
+.langit__cta {
+  margin-top: auto;
+  padding-top: var(--s-5);
+}
+
+@media (max-height: 720px) {
+  .langit__couple {
+    width: min(220px, 60%);
+    opacity: 0.5;
+  }
+}

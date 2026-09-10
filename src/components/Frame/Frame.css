@@ -1,0 +1,149 @@
+.slot {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: var(--r-print);
+  background: var(--paper-1);
+  border: 1px solid rgba(220, 205, 190, 0.4);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+.slot__print {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  will-change: transform;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+/* --- The empty mount --------------------------------------------------
+   Deliberately plain. This is a place for a photograph, and it should
+   look like one — not like a picture in its own right. */
+
+.slot__mount {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  gap: 10px;
+  background:
+    radial-gradient(70% 50% at 50% 42%, rgba(255, 250, 242, 0.9) 0%, rgba(255, 250, 242, 0) 72%),
+    linear-gradient(168deg, var(--paper-1) 0%, var(--paper-2) 100%);
+}
+
+.slot__rule {
+  position: absolute;
+  inset: 13px;
+  border: 1px solid rgba(47, 39, 35, 0.09);
+  border-radius: 2px;
+}
+
+.slot__rule::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 5px;
+  height: 5px;
+  margin: -2.5px 0 0 -2.5px;
+  border-radius: 50%;
+  background: var(--gold);
+  opacity: 0.5;
+}
+
+.slot__path {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 22px;
+  text-align: center;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10px;
+  letter-spacing: 0.01em;
+  color: rgba(139, 122, 112, 0.75);
+  padding: 0 18px;
+  word-break: break-all;
+}
+
+/* --- Album corners ----------------------------------------------------
+   The same paper triangles that hold a print in an album. They stay when
+   the real photograph lands, which is the point. */
+
+.slot__corner {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  pointer-events: none;
+  background: linear-gradient(135deg, #f0e0c8 0%, #ddc7a8 100%);
+  box-shadow: 0 1px 3px rgba(58, 42, 34, 0.22);
+}
+
+.slot--dark .slot__corner {
+  background: linear-gradient(135deg, rgba(226, 210, 188, 0.5) 0%, rgba(160, 146, 126, 0.45) 100%);
+}
+
+.slot__corner--tl {
+  top: 0;
+  left: 0;
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+.slot__corner--tr {
+  top: 0;
+  right: 0;
+  clip-path: polygon(100% 0, 100% 100%, 0 0);
+}
+.slot__corner--bl {
+  bottom: 0;
+  left: 0;
+  clip-path: polygon(0 0, 0 100%, 100% 100%);
+}
+.slot__corner--br {
+  bottom: 0;
+  right: 0;
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+}
+
+.slot--dark {
+  background: #0b0d0e;
+}
+
+.slot--dark .slot__mount {
+  background:
+    radial-gradient(70% 46% at 50% 44%, rgba(38, 44, 46, 0.9) 0%, rgba(11, 13, 14, 0) 76%),
+    linear-gradient(168deg, #121516 0%, #0a0c0d 100%);
+}
+
+.slot--dark .slot__rule {
+  border-color: rgba(242, 231, 219, 0.13);
+}
+
+.slot--dark .slot__rule::after {
+  background: var(--gold);
+  opacity: 0.6;
+}
+
+.slot--dark .slot__path {
+  color: rgba(242, 231, 219, 0.34);
+}
+
+/* Tanpa blend. Butiran di atas foto layar penuh yang sedang bergerak
+   pelan itu bikin tiap frame dikomposit ulang. */
+.slot--dark .slot__grain {
+  mix-blend-mode: normal;
+  opacity: 0.3;
+  background-image: radial-gradient(rgba(255, 250, 240, 0.14) 0.5px, transparent 0.6px);
+}
+
+.slot__grain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.45;
+  mix-blend-mode: multiply;
+  background-image: radial-gradient(rgba(80, 62, 50, 0.06) 0.5px, transparent 0.6px);
+  background-size: 3px 3px;
+}

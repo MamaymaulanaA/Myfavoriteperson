@@ -1,0 +1,5 @@
+.garden {
+  /* Bukan kertas. Langit taman memang menutupi ini, tapi saat scene-nya
+     memudar masuk atau keluar, warna inilah yang menyembul sekejap. */
+  background: var(--night-3);
+}

@@ -1,0 +1,114 @@
+.minigame {
+  background: var(--night-3);
+}
+
+.minigame__world {
+  position: absolute;
+  inset: 0;
+  will-change: filter;
+}
+
+/* --- Kartu petunjuk sebelum mulai (Mission Card) ---------------------- */
+
+.minigame__intro {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-curtain);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--gutter);
+  text-align: center;
+  background:
+    radial-gradient(80% 46% at 50% 40%, rgba(14, 18, 16, 0.7) 0%, rgba(8, 12, 10, 0.88) 100%);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+.minigame__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-4);
+  width: min(340px, calc(100% - 2 * var(--gutter)));
+  padding: clamp(32px, 7vw, 44px) clamp(20px, 5vw, 28px);
+  border-radius: var(--r-md);
+  background: linear-gradient(174deg, #222b26 0%, #151d19 100%);
+  border: 1px solid var(--tactile-edge-dark);
+  box-shadow:
+    inset 0 1.2px 0 rgba(255, 255, 255, 0.14),
+    inset 0 -1.2px 0 rgba(0, 0, 0, 0.4),
+    0 4px 0 #111613,
+    0 14px 34px -4px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.minigame__rule {
+  width: 48px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0.6;
+}
+
+.minigame__angka {
+  color: var(--gold);
+  margin-bottom: -6px;
+}
+
+.minigame__judul {
+  color: var(--text-on-night);
+}
+
+/* Petunjuknya ditulis dua baris pendek, bukan satu paragraf panjang. */
+.minigame__cara {
+  max-width: 32ch;
+  text-wrap: pretty;
+  white-space: pre-line;
+  color: rgba(242, 231, 219, 0.72);
+  margin-bottom: var(--s-2);
+}
+
+/* --- Selesai ----------------------------------------------------------- */
+
+.minigame__reward {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-sheet);
+  display: grid;
+  place-items: center;
+}
+
+.minigame__hearts {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  opacity: 0.7;
+  filter: blur(1.5px);
+}
+
+.minigame__hearts .lottie-asset {
+  width: 118%;
+  height: 118%;
+}
+
+.minigame__line {
+  position: relative;
+  z-index: 1;
+  padding: 11px 24px;
+  border-radius: var(--r-pill);
+  background: linear-gradient(176deg, rgba(30, 38, 34, 0.9) 0%, rgba(17, 23, 20, 0.96) 100%);
+  border: 1px solid var(--tactile-edge-dark);
+  box-shadow:
+    inset 0 1.2px 0 rgba(255, 255, 255, 0.14),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.35),
+    0 3px 0 #121815,
+    0 8px 20px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: var(--gold);
+}

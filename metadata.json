@@ -1,0 +1,6 @@
+{
+  "name": "Untuk Puja - 3D Interactive Story & Game",
+  "description": "A poetic 3D-inspired interactive garden game and birthday memory journey with polished tactile soft 3D UI.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

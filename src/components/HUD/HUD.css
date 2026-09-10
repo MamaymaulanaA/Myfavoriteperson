@@ -1,0 +1,226 @@
+.hud {
+  position: absolute;
+  top: calc(var(--safe-t) + 14px);
+  left: max(var(--gutter), var(--safe-l));
+  right: max(var(--gutter), var(--safe-r));
+  z-index: var(--z-hud);
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--s-3);
+  pointer-events: none;
+}
+
+.hud__left {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.hud__act {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  padding: 4px 11px;
+  border-radius: var(--r-pill);
+  background: linear-gradient(176deg, rgba(34, 43, 38, 0.76) 0%, rgba(19, 25, 22, 0.85) 100%);
+  border: 1px solid var(--tactile-edge-dark);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.28),
+    0 2px 0 #121714,
+    0 5px 10px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.hud__numeral {
+  font-family: var(--font-display);
+  font-size: 14px;
+  line-height: 1;
+  letter-spacing: 0.1em;
+  color: var(--gold-deep);
+}
+
+.hud__tick {
+  width: 12px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.28;
+  color: var(--text-muted);
+}
+
+.hud__chapter {
+  font-size: 0.625rem;
+  letter-spacing: 0.22em;
+  color: var(--text-muted);
+}
+
+/* --- Penghitung cahaya (tactile pod) ----------------------------------- */
+
+.hud__cahaya {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  padding: 5px 12px 5px 9px;
+  border-radius: var(--r-pill);
+  background: linear-gradient(176deg, rgba(34, 43, 38, 0.88) 0%, rgba(19, 25, 22, 0.94) 100%);
+  border: 1px solid var(--tactile-edge-dark);
+  box-shadow:
+    inset 0 1.2px 0 rgba(255, 255, 255, 0.14),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.32),
+    0 2.5px 0 #121714,
+    0 6px 14px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.hud__spark {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff6e2 0%, var(--gold) 60%, rgba(224, 188, 133, 0) 100%);
+  box-shadow: 0 0 8px rgba(255, 214, 156, 0.6);
+  animation: spark-breath 3.4s var(--e-inout) infinite;
+}
+
+@keyframes spark-breath {
+  0%,
+  100% {
+    opacity: 0.75;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.06);
+  }
+}
+
+.hud__count {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 3px;
+  font-family: var(--font-ui);
+  font-size: var(--fs-micro);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--text-on-night-muted);
+}
+
+.hud__now {
+  display: inline-block;
+  min-width: 1.1em;
+  text-align: right;
+  color: var(--gold);
+}
+
+.hud__of {
+  opacity: 0.5;
+}
+
+/* --- Sound (Tactile 3D Round Button) ---------------------------------- */
+
+.hud__sound {
+  pointer-events: auto;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: var(--r-pill);
+  background: linear-gradient(176deg, rgba(36, 45, 40, 0.88) 0%, rgba(20, 26, 23, 0.95) 100%);
+  border: 1px solid var(--tactile-edge-dark);
+  box-shadow:
+    inset 0 1.2px 0 rgba(255, 255, 255, 0.16),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.4),
+    0 2.5px 0 #121815,
+    0 6px 14px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  cursor: pointer;
+  transition:
+    transform var(--t-tap) var(--e-out),
+    box-shadow var(--t-tap) var(--e-out),
+    background var(--t-btn) var(--e-out);
+}
+
+.hud__sound:hover {
+  background: linear-gradient(176deg, rgba(42, 53, 47, 0.92) 0%, rgba(24, 31, 27, 0.98) 100%);
+  box-shadow:
+    inset 0 1.5px 0 rgba(255, 255, 255, 0.22),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.45),
+    0 3px 0 #121815,
+    0 8px 18px rgba(0, 0, 0, 0.4);
+}
+
+.hud__sound:active {
+  transform: translateY(1.5px);
+  box-shadow:
+    inset 0 1.5px 2px rgba(0, 0, 0, 0.5),
+    0 1px 0 #121815,
+    0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.hud__wave {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  height: 14px;
+}
+
+.hud__wave i {
+  display: block;
+  width: 2px;
+  border-radius: 1px;
+  background: var(--text-muted);
+  height: 4px;
+  transition: height 400ms var(--e-out), background-color 400ms var(--e-out);
+}
+
+.hud__wave.is-on i:nth-child(1) {
+  height: 8px;
+  animation: wave 1.7s var(--e-inout) infinite;
+}
+.hud__wave.is-on i:nth-child(2) {
+  height: 14px;
+  animation: wave 1.7s var(--e-inout) infinite 0.22s;
+}
+.hud__wave.is-on i:nth-child(3) {
+  height: 6px;
+  animation: wave 1.7s var(--e-inout) infinite 0.44s;
+}
+
+.hud__wave.is-on i {
+  background: var(--gold-deep);
+}
+
+@keyframes wave {
+  0%,
+  100% {
+    transform: scaleY(0.55);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+/* --- On a dark ground -------------------------------------------------- */
+
+.hud--dark .hud__numeral {
+  color: var(--gold);
+}
+
+.hud--dark .hud__chapter,
+.hud--dark .hud__tick {
+  color: var(--text-on-night-muted);
+}
+
+.hud--dark .hud__wave i {
+  background: rgba(242, 231, 219, 0.5);
+}
+
+.hud--dark .hud__wave.is-on i {
+  background: var(--gold);
+}

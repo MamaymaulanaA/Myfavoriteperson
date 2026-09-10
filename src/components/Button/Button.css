@@ -1,0 +1,104 @@
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  min-width: 44px;
+  padding: 0 var(--s-6);
+  border-radius: var(--r-pill);
+  font-family: var(--font-ui);
+  font-size: var(--fs-button);
+  font-weight: 600;
+  letter-spacing: var(--tr-button);
+  white-space: nowrap;
+  will-change: transform;
+  transition:
+    background-color var(--t-btn) var(--e-out),
+    border-color var(--t-btn) var(--e-out),
+    color var(--t-btn) var(--e-out),
+    box-shadow var(--t-btn) var(--e-out);
+}
+
+.btn:disabled {
+  opacity: 0.42;
+  cursor: default;
+}
+
+.btn.is-block {
+  display: flex;
+  width: 100%;
+}
+
+.btn__label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+}
+
+/* Warm porcelain clay on a dark ground — primary action with physical 3D bevel and extrusion */
+.btn--light {
+  background: linear-gradient(176deg, #fffdf8 0%, #f6ebe0 100%);
+  color: var(--ink);
+  border: 1px solid var(--tactile-edge-light);
+  box-shadow: var(--tactile-btn-light);
+}
+
+.btn--light:hover:not(:disabled) {
+  background: linear-gradient(176deg, #ffffff 0%, #faefe2 100%);
+  box-shadow: var(--tactile-btn-light-hover);
+}
+
+.btn--light:active:not(:disabled) {
+  box-shadow: var(--tactile-btn-light-pressed);
+}
+
+.btn--ink {
+  background: linear-gradient(176deg, #38302b 0%, #27201c 100%);
+  color: var(--paper-0);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1.2px 0 rgba(255, 255, 255, 0.22), inset 0 -1px 0 rgba(0, 0, 0, 0.4), 0 3.5px 0 #181411, 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.btn--ink:hover:not(:disabled) {
+  background: linear-gradient(176deg, #443b35 0%, #2f2723 100%);
+  box-shadow: inset 0 1.5px 0 rgba(255, 255, 255, 0.28), inset 0 -1px 0 rgba(0, 0, 0, 0.45), 0 4px 0 #181411, 0 10px 20px rgba(0, 0, 0, 0.35);
+}
+
+.btn--ink:active:not(:disabled) {
+  box-shadow: inset 0 1.5px 2px rgba(0, 0, 0, 0.5), 0 1px 0 #181411, 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.btn--outline {
+  background: linear-gradient(176deg, rgba(255, 250, 240, 0.11) 0%, rgba(242, 231, 219, 0.04) 100%);
+  color: var(--text-on-night);
+  border: 1px solid var(--tactile-edge-dark);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: var(--tactile-btn-dark);
+}
+
+.btn--outline:hover:not(:disabled) {
+  background: linear-gradient(176deg, rgba(255, 250, 240, 0.16) 0%, rgba(242, 231, 219, 0.07) 100%);
+  border-color: rgba(255, 250, 240, 0.18);
+  box-shadow: var(--tactile-btn-dark-hover);
+}
+
+.btn--outline:active:not(:disabled) {
+  box-shadow: var(--tactile-btn-dark-pressed);
+}
+
+.btn--bare {
+  min-height: 44px;
+  padding: 0 var(--s-4);
+  background: none;
+  font-size: var(--fs-micro);
+  font-weight: 600;
+  letter-spacing: var(--tr-micro);
+  text-transform: uppercase;
+  color: var(--text-on-night-muted);
+}
+
+.btn--bare:hover:not(:disabled) {
+  color: var(--text-on-night);
+}

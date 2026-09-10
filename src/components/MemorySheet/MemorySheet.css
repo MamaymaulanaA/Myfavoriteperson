@@ -1,0 +1,162 @@
+.sheet {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-sheet);
+}
+
+.sheet__scrim {
+  position: absolute;
+  inset: 0;
+  /* Sengaja tanpa backdrop-filter. Blur di atas taman yang partikelnya
+     masih jalan itu dihitung ulang tiap frame selama kartunya terbuka,
+     dan itu sumber kedip yang paling jelas di HP. Gelapnya dinaikkan
+     sedikit sebagai gantinya; tamannya sendiri sudah mundur lewat
+     .world.is-receded. */
+  background:
+    radial-gradient(90% 55% at 50% 38%, rgba(28, 22, 17, 0.42) 0%, rgba(28, 22, 17, 0.76) 100%),
+    linear-gradient(180deg, rgba(28, 22, 17, 0.46) 0%, rgba(28, 22, 17, 0.84) 78%);
+}
+
+.sheet__inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Bukan `center`. Kalau isinya lebih tinggi daripada layar, flexbox
+     yang di-center memotong bagian ATAS dan nggak bisa digulung balik.
+     Awal + margin auto di anak pertama & terakhir: pas di tengah kalau
+     muat, mulai dari atas dan bisa digeser kalau nggak. */
+  justify-content: flex-start;
+  gap: clamp(14px, 3vh, 24px);
+  height: 100%;
+  padding-top: calc(var(--safe-t) + var(--s-5));
+  padding-bottom: calc(var(--safe-b) + var(--s-5));
+
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.sheet__inner::-webkit-scrollbar {
+  display: none;
+}
+
+/* The print: a photograph on a paper mat, handled and set down slightly
+   off-square. */
+.sheet__print {
+  /* Kecil saja. Yang utama di kartu ini kata-katanya; fotonya cuma yang
+     memberi wajah pada kalimatnya. */
+  width: min(52%, 178px);
+  flex: none;
+  margin-top: auto;
+  will-change: transform, opacity;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+.sheet__mat {
+  padding: 10px;
+  border-radius: var(--r-sm);
+  background: linear-gradient(174deg, #fffdf8 0%, #f6ebe0 100%);
+  border: 1px solid var(--tactile-edge-light);
+  box-shadow:
+    inset 0 1.5px 0.5px rgba(255, 255, 255, 0.95),
+    inset 0 -1.5px 0 rgba(195, 175, 155, 0.25),
+    0 4px 0 #ded0bd,
+    0 14px 34px -4px rgba(35, 26, 18, 0.35);
+}
+
+.sheet__mat .slot {
+  aspect-ratio: 4 / 5;
+  height: auto;
+}
+
+.sheet__text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-3);
+  flex: none;
+  margin-bottom: auto;
+  text-align: center;
+}
+
+.sheet__label {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: var(--r-pill);
+  background: linear-gradient(176deg, rgba(34, 43, 38, 0.85) 0%, rgba(18, 24, 21, 0.94) 100%);
+  border: 1px solid var(--tactile-edge-dark);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.3),
+    0 2px 0 #121714,
+    0 4px 10px rgba(0, 0, 0, 0.25);
+  color: var(--gold);
+  letter-spacing: 0.16em;
+}
+
+/* Judulnya sekarang kalimat utuh huruf kecil, bukan dua tiga kata.
+   Ukurannya diturunkan sedikit dan dibiarkan lebih lebar, kalau tidak
+   dia jadi empat baris besar yang menekan sisanya keluar layar. */
+.sheet__title {
+  color: var(--text-on-night);
+  max-width: 24ch;
+  font-size: clamp(1.25rem, 5.6vw, 1.5rem);
+  line-height: 1.24;
+}
+
+/* Baris barunya ditampilkan apa adanya. Itu bagian dari nadanya:
+   satu pikiran satu baris. Jangan diganti jadi paragraf sambung. */
+.sheet__caption {
+  color: rgba(242, 231, 219, 0.78);
+  max-width: 34ch;
+  white-space: pre-line;
+  line-height: 1.62;
+}
+
+.sheet__close {
+  margin-top: var(--s-4);
+  min-height: 44px;
+  padding: 0 var(--s-6);
+  border-radius: var(--r-pill);
+  background: linear-gradient(176deg, rgba(255, 250, 240, 0.12) 0%, rgba(242, 231, 219, 0.05) 100%);
+  border: 1px solid var(--tactile-edge-dark);
+  box-shadow: var(--tactile-btn-dark);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  font-size: var(--fs-caption);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-on-night);
+  cursor: pointer;
+  transition:
+    transform var(--t-tap) var(--e-out),
+    box-shadow var(--t-tap) var(--e-out),
+    background var(--t-btn) var(--e-out);
+}
+
+.sheet__close:hover {
+  background: linear-gradient(176deg, rgba(255, 250, 240, 0.18) 0%, rgba(242, 231, 219, 0.08) 100%);
+  box-shadow: var(--tactile-btn-dark-hover);
+}
+
+.sheet__close:active {
+  transform: translateY(2px);
+  box-shadow: var(--tactile-btn-dark-pressed);
+}
+
+/* Layar pendek: ruangnya untuk kata-kata, bukan untuk fotonya. */
+@media (max-height: 720px) {
+  .sheet__print {
+    width: min(42%, 138px);
+  }
+
+  .sheet__title {
+    font-size: clamp(1.125rem, 5vw, 1.3125rem);
+  }
+}

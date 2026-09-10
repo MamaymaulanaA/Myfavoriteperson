@@ -1,0 +1,94 @@
+.opening {
+  background: var(--night-3);
+}
+
+.opening__world {
+  position: absolute;
+  inset: 0;
+  filter: blur(5px) saturate(0.85) brightness(1.15);
+  transform-origin: 50% 62%;
+  will-change: transform;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+.opening__dim {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(74% 40% at 50% 44%, rgba(8, 12, 14, 0.1) 0%, rgba(8, 12, 14, 0.66) 100%),
+    linear-gradient(180deg, rgba(8, 12, 14, 0.42) 0%, rgba(8, 12, 14, 0.12) 36%, rgba(8, 12, 14, 0.74) 100%);
+}
+
+.opening__body {
+  position: relative;
+  z-index: var(--z-ui);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(20px, 4.6vh, 36px);
+  height: 100%;
+  text-align: center;
+  padding-top: calc(var(--safe-t) + var(--s-5));
+  padding-bottom: calc(var(--safe-b) + var(--s-6));
+}
+
+.opening__greeter {
+  position: relative;
+  width: min(186px, 46vw);
+}
+
+/* The one pool of warm light in an otherwise sleeping garden. */
+.opening__pool {
+  position: absolute;
+  left: 50%;
+  top: 56%;
+  width: 260%;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 214, 156, 0.28) 0%,
+    rgba(255, 198, 132, 0.12) 38%,
+    rgba(255, 198, 132, 0) 68%
+  );
+  pointer-events: none;
+}
+
+.opening__copy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-3);
+  max-width: 30ch;
+}
+
+.opening__eyebrow {
+  color: var(--gold);
+  opacity: 0.8;
+}
+
+.opening__heading {
+  white-space: pre-line;
+  max-width: 15ch;
+  color: var(--text-on-night);
+}
+
+.opening__sub {
+  max-width: 27ch;
+  color: var(--text-on-night-muted);
+}
+
+.opening__cta {
+  margin-top: var(--s-2);
+}
+
+@media (max-height: 700px) {
+  .opening__greeter {
+    width: min(140px, 38vw);
+  }
+}

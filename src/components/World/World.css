@@ -1,0 +1,305 @@
+.world {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: #1b2430;
+  isolation: isolate;
+  transition: filter 700ms var(--e-out);
+}
+
+.world.is-receded {
+  filter: brightness(0.7) saturate(0.8);
+}
+
+.world__camera {
+  position: absolute;
+  inset: 0;
+  transform-origin: 50% 68%;
+  will-change: transform;
+}
+
+.world__drag {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  will-change: transform;
+  cursor: grab;
+}
+
+.world__drag:active {
+  cursor: grabbing;
+}
+
+/* Each group isolates its own blending, so the sky pass and the foliage
+   pass cannot reach into one another. */
+.world__group {
+  position: absolute;
+  inset: 0;
+  isolation: isolate;
+}
+
+.world__group--sky {
+  z-index: 1;
+}
+
+.world__group--foliage {
+  z-index: 2;
+}
+
+.layer {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  will-change: transform;
+  pointer-events: none;
+}
+
+.layer--actors {
+  pointer-events: none;
+}
+
+.layer--actors > * {
+  pointer-events: auto;
+}
+
+/* Wash layers are pinned to the camera and must cover the whole stage. */
+.layer--wash {
+  left: 0;
+  right: 0;
+  width: auto !important;
+  min-width: 100%;
+}
+
+.layer--bokeh {
+  mix-blend-mode: screen;
+  opacity: 0.85;
+}
+
+.layer__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Plates draw slightly outside their box so a fast pan never exposes an
+   edge; the world clips them. */
+.plate {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* ------------------------------------------------------------------
+   Sky passes — laid over, so the sky keeps its colour and brightness
+   ------------------------------------------------------------------ */
+
+.sky,
+.shade {
+  position: absolute;
+  inset: -2%;
+}
+
+.sky--dusk {
+  background: linear-gradient(
+    177deg,
+    #253449 0%,
+    #3b4a63 20%,
+    #6e6a79 42%,
+    #b58a7d 62%,
+    #e2a97f 80%,
+    #f0c191 100%
+  );
+}
+
+.sky--night {
+  background: linear-gradient(177deg, #0f1728 0%, #182238 34%, #253049 62%, #33384c 100%);
+}
+
+.sky--gold {
+  background: linear-gradient(177deg, #a9c4d8 0%, #e4d2b4 34%, #f6cf9c 64%, #f7dcb0 100%);
+}
+
+/* ------------------------------------------------------------------
+   Foliage passes — multiplied down toward silhouette
+   ------------------------------------------------------------------ */
+
+.shade--cool {
+  mix-blend-mode: multiply;
+  background: linear-gradient(177deg, #58708a 0%, #2f4756 42%, #17282d 78%, #0e1c1f 100%);
+}
+
+.shade--night {
+  mix-blend-mode: multiply;
+  background: linear-gradient(177deg, #2c3d55 0%, #1b2838 44%, #0d151c 100%);
+}
+
+.shade--warm {
+  mix-blend-mode: soft-light;
+  background: linear-gradient(177deg, #ffd9a0 0%, #ffbe80 46%, #c98a5e 100%);
+}
+
+/* ------------------------------------------------------------------
+   Camera effects
+   ------------------------------------------------------------------ */
+
+.world__glow,
+.world__vignette,
+.world__grain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.world__glow {
+  z-index: 8;
+  mix-blend-mode: screen;
+  background:
+    radial-gradient(26% 13% at 72% 12%, rgba(255, 232, 190, 0.9) 0%, rgba(255, 232, 190, 0) 74%),
+    radial-gradient(76% 26% at 62% 18%, rgba(255, 206, 152, 0.34) 0%, rgba(255, 206, 152, 0) 78%),
+    radial-gradient(70% 24% at 24% 56%, rgba(255, 200, 150, 0.16) 0%, rgba(255, 200, 150, 0) 80%);
+}
+
+.world__vignette {
+  z-index: 9;
+  background:
+    radial-gradient(104% 66% at 54% 36%, rgba(10, 12, 14, 0) 32%, rgba(10, 12, 14, 0.62) 100%),
+    linear-gradient(180deg, rgba(10, 12, 14, 0.36) 0%, rgba(10, 12, 14, 0) 18%),
+    linear-gradient(0deg, rgba(10, 12, 14, 0.4) 0%, rgba(10, 12, 14, 0) 24%);
+}
+
+.world__grain {
+  z-index: 10;
+  opacity: 0.4;
+  mix-blend-mode: overlay;
+  background-image: radial-gradient(rgba(255, 245, 230, 0.09) 0.5px, transparent 0.6px);
+  background-size: 3px 3px;
+}
+
+/* ------------------------------------------------------------------
+   The moth
+   ------------------------------------------------------------------ */
+
+.moth {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.moth__btn {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 8px;
+  pointer-events: auto;
+}
+
+.moth__svg {
+  position: relative;
+  width: 100%;
+  filter: drop-shadow(0 3px 6px rgba(10, 14, 12, 0.5));
+}
+
+.moth__glow {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 210%;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 232, 190, 0.5) 0%, rgba(255, 232, 190, 0) 68%);
+  animation: moth-breath 5.5s var(--e-inout) infinite;
+}
+
+@keyframes moth-breath {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+
+/* ------------------------------------------------------------------
+   Drag affordance
+   ------------------------------------------------------------------ */
+
+.world-hint {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-inline: auto;
+  width: fit-content;
+  max-width: min(34ch, calc(100% - 2 * var(--gutter)));
+  bottom: calc(var(--safe-b) + 22px);
+  z-index: var(--z-ui);
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 18px;
+  border-radius: var(--r-pill);
+  background: linear-gradient(176deg, rgba(32, 41, 36, 0.9) 0%, rgba(18, 24, 21, 0.96) 100%);
+  border: 1px solid var(--tactile-edge-dark);
+  box-shadow:
+    inset 0 1.2px 0 rgba(255, 255, 255, 0.16),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.35),
+    0 3px 0 #121815,
+    0 8px 22px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: var(--text-on-night);
+  font-size: var(--fs-caption);
+  line-height: 1.5;
+  text-align: left;
+  text-wrap: pretty;
+  pointer-events: none;
+}
+
+.world-hint__swipe {
+  display: flex;
+  align-items: center;
+  flex: none;
+  width: 28px;
+  height: 8px;
+  border-radius: var(--r-pill);
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.45);
+  position: relative;
+  overflow: hidden;
+}
+
+.world-hint__swipe::after {
+  content: '';
+  position: absolute;
+  top: 1px;
+  width: 10px;
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(180deg, #fff4e2 0%, var(--gold) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    0 1px 2px rgba(0, 0, 0, 0.35);
+  animation: swipe-bead 2.4s var(--e-inout) infinite;
+}
+
+@keyframes swipe-bead {
+  0%,
+  100% {
+    transform: translateX(2px);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateX(14px);
+    opacity: 1;
+  }
+}

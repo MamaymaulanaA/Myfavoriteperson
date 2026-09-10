@@ -1,0 +1,10 @@
+.gift {
+  width: clamp(78px, 24vw, 100px);
+  filter: drop-shadow(0 4px 0 rgba(18, 24, 21, 0.6)) drop-shadow(0 14px 28px rgba(0, 0, 0, 0.42));
+}
+
+.gift__svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}

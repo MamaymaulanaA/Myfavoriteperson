@@ -1,0 +1,103 @@
+.cinema {
+  background: #0a0c0d;
+}
+
+.cinema__reel {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.cinema__frame {
+  position: absolute;
+  inset: 0;
+  will-change: transform, opacity, filter;
+  /* Kunci fotonya di lapisan komposit sendiri. Tanpa ini Safari sempat
+     menggambar ulang seluruh layar tiap frame waktu blur-nya bergerak. */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.cinema__frame .slot {
+  border-radius: 0;
+  background: #0a0c0d;
+}
+
+/* Fotonya penuh layar, jadi tulisan di bawah butuh alasnya sendiri
+   supaya tetap kebaca berapa pun terangnya foto. */
+.cinema__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-air);
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(6, 8, 9, 0.42) 0%,
+    rgba(6, 8, 9, 0) 26%,
+    rgba(6, 8, 9, 0) 52%,
+    rgba(6, 8, 9, 0.82) 100%
+  );
+}
+
+.cinema__vignette {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-air);
+  pointer-events: none;
+  background: radial-gradient(112% 78% at 50% 44%, rgba(0, 0, 0, 0) 46%, rgba(0, 0, 0, 0.52) 100%);
+}
+
+.cinema__grain {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-air);
+  pointer-events: none;
+  opacity: 0.22;
+  background-image: radial-gradient(rgba(255, 250, 240, 0.16) 0.5px, transparent 0.6px);
+  background-size: 3px 3px;
+}
+
+/* --- Foot -------------------------------------------------------------- */
+
+.cinema__foot {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: var(--z-ui);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-4);
+  padding-bottom: calc(var(--safe-b) + var(--s-5));
+}
+
+.cinema__caption {
+  max-width: 26ch;
+  text-align: center;
+  color: #fbf2e6;
+  text-shadow: 0 2px 22px rgba(0, 0, 0, 0.8);
+}
+
+.cinema__controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-2);
+}
+
+.cinema__track {
+  position: relative;
+  width: min(150px, 42vw);
+  height: 1px;
+  background: rgba(251, 242, 230, 0.22);
+  overflow: hidden;
+}
+
+.cinema__fill {
+  position: absolute;
+  inset: 0;
+  transform-origin: left center;
+  background: rgba(251, 242, 230, 0.8);
+}
